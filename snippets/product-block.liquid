@@ -235,11 +235,11 @@
           <span class="saved-value">{{ product.metafields.custom.campaign_text_top_left_side_2 }}</span>
           <span class="campaign">{{ product.metafields.custom.campaign_text_top_left_side }}</span>
         </div>
-      </div>
+      </div> 
     {% endif %}
     <a data-cc-animate-click href="{{ product_url | split: '?' | first }}" class="caption upper">
       {% if product.metafields.custom.nere_h_ge or product.metafields.custom.position_image %}
-        <div class="product-region {% if product.metafields.custom.nere_h_ge %}text{% endif %}">
+        <div class="product-region {% if product.metafields.custom.position_image %} custom-logo {% endif %} {% if product.metafields.custom.campaign_text_top_left_side_2 %}text{% endif %}">
           {% if product.metafields.custom.position_image %}
             <img
               srcset="
@@ -253,8 +253,14 @@
             >
           {% endif %}
           {% if product.metafields.custom.nere_h_ge %}
-            <span class="region-text">{{ product.metafields.custom.nere_h_ge }}</span>
+            <span class="region-text" style="display: none">{{ product.metafields.custom.nere_h_ge }}</span>
           {% endif %}
+          {% if product.metafields.custom.position_image == blank %}
+            {% if product.metafields.custom.nere_h_ge %}
+              <span class="replace-text" >{{ product.metafields.custom.nere_h_ge }}</span>
+            {% endif %}          
+          {% endif %}
+
         </div>
       {% endif %}
       <div class="title">
